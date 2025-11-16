@@ -1,0 +1,34 @@
+name: Deploy to EC2
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Add SSH key
+      uses: webfactory/ssh-agent@v0.7.0
+      with:
+        ssh-private-key: ${{ secrets.EC2_SSH_KEY}}
+
+    - name: Add EC2 to known_hosts
+      run: ssh-keyscan -p 22 ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
+
+    - name: Deploy to EC2
+      run: |
+         ssh ec2-user@${{ secrets.EC2_HOST }} "
+          cd /home/ec2-user/SCinet || exit 1
+          git fetch --all
+          git reset --hard origin/main
+          git pull
+          sudo systemctl restart tg_bot.service
+        "
+
+        
