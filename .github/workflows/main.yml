@@ -22,6 +22,7 @@ jobs:
         source: "."
         target: "/home/ec2-user/SCinet/SCinetBot"
         overwrite: true
+        exclude: ".git"
 
     - name: Restart Telegram bot
       uses: appleboy/ssh-action@v0.1.7
