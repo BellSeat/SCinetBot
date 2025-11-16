@@ -23,12 +23,12 @@ jobs:
 
     - name: Deploy to EC2
       run: |
-         ssh ec2-user@${{ secrets.EC2_HOST }} "
+        ssh ec2-user@${{ secrets.EC2_HOST }} << 'EOF'
           cd /home/ec2-user/SCinet || exit 1
           git fetch --all
           git reset --hard origin/main
           git pull
           sudo systemctl restart tg_bot.service
-        "
+        EOF
 
         
