@@ -2,8 +2,7 @@ name: Deploy to EC2
 
 on:
   push:
-    branches:
-      - main
+    branches: [ "main" ]
 
 jobs:
   deploy:
@@ -11,24 +10,27 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
-    - name: Add SSH key
-      uses: webfactory/ssh-agent@v0.7.0
+    - name: Copy files to EC2
+      uses: appleboy/scp-action@v0.1.7
       with:
-        ssh-private-key: ${{ secrets.EC2_SSH_KEY}}
+        host: ${{ secrets.EC2_HOST }}
+        username: ec2-user
+        key: ${{ secrets.EC2_KEY }}
+        source: "."
+        target: "/home/ec2-user/SCinet/SCinetBot"
+        overwrite: true
 
-    - name: Add EC2 to known_hosts
-      run: ssh-keyscan -p 22 ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
-
-    - name: Deploy to EC2
-      run: |
-        ssh ec2-user@${{ secrets.EC2_HOST }} << 'EOF'
-          cd /home/ec2-user/SCinet || exit 1
-          git fetch --all
-          git reset --hard origin/main
-          git pull
+    - name: Restart Telegram bot service
+      uses: appleboy/ssh-action@v0.1.7
+      with:
+        host: ${{ secrets.EC2_HOST }}
+        username: ec2-user
+        key: ${{ secrets.EC2_KEY }}
+        script: |
+          cd /home/ec2-user/SCinet/SCinetBot
+          echo "Pull finished. Restarting service..."
+          sudo systemctl daemon-reload
           sudo systemctl restart tg_bot.service
-        EOF
-
-        
+          sudo systemctl status tg_bot.service --no-pager
