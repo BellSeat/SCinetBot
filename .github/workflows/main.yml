@@ -31,5 +31,6 @@ jobs:
           sudo systemctl stop tg.service
           sleep 5
           sudo systemctl daemon-reload
-          sudo systemctl restart tg_bot.service
+          sudo systemctl enable tg_bot.service
+          sudo systemctl start tg_bot.service
           sudo systemctl status tg_bot.service --no-pager
