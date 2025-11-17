@@ -20,11 +20,12 @@ Project Layout
 
 Requirements
 ------------
-- Python 3.11+ (needed for `zoneinfo`).
+- Python 3.11+ (needed for `zoneinfo`, EC2 timezone may different from local).
 - Packages: `python-telegram-bot>=21`, `fuzzywuzzy[speedup]`, `requests`.
   ```bash
   pip install "python-telegram-bot>=21" "fuzzywuzzy[speedup]" requests
   ```
+  If you are more famliar with word embedding and vector data/ vector database, I highly recommend you use it. For example, `Bert` with [`Faiss`](https://ai.meta.com/tools/faiss/) instead of using `fuzzywuzzy`
 
 How to Run
 ----------
@@ -45,6 +46,15 @@ Hosting Options
   - I use a simple `systemd` service file (e.g., `/etc/systemd/system/scinet-bot.service`) that runs `python /opt/scinet/tg.py`, restarts the bot on failure, and hooks into EC2’s boot process so the bot starts automatically.
   - After placing the service file, run `sudo systemctl daemon-reload`, then `sudo systemctl enable --now scinet-bot` to keep it managed by systemd.
   - Update the JSON config files on the instance and `sudo systemctl restart scinet-bot` whenever data changes.
+
+CI/CD Workflow
+--------------
+- GitHub Actions workflow (`.github/workflows/main.yml`) triggers on every push to `main`.
+- Steps:
+  1. Check out the repository.
+  2. Use `rsync` (via `burnett01/rsync-deployments`) to mirror the repo to `/home/ec2-user/SCinet/SCinetBot` on the EC2 host specified by `EC2_HOST`/`EC2_SSH_KEY` secrets.
+  3. SSH in (via `appleboy/ssh-action`) to stop the running `tg.service`, reload `systemd`, enable `tg_bot.service`, and start it again—ensuring the latest code is live.
+- Keep the `EC2_HOST` and `EC2_SSH_KEY` secrets up to date in the repo settings so deployments keep working.
 
 Updating Data
 -------------
