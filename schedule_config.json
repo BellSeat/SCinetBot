@@ -44,8 +44,8 @@
       "09:00-10:30": {"student1": "Benjamin Michalowicz", "student2": "Swathi Vallabhajosyula"},
       "10:30-12:00": {"student1": "Manas Vishal", "student2": "Hayden Estes"},
       "12:00-14:00": {"student1": "Nawras Alnaasan", "student2": "Kaylee Scanlin"},
-      "14:00-16:00": {"student1": "Swathi Vallabhajosyula", "student2": "Miguel Romero Rosas"},
-      "16:00-18:00": {"student1": "Manas Vishal", "student2": "Qingran Shao"}
+      "14:00-16:00": {"student1": "Swathi Vallabhajosyula", "student2": "Manas Vishal↔️"},
+      "16:00-18:00": {"student1": "Miguel Romero Rosas↔️", "student2": "Qingran Shao"}
     }
   },
   "2025-11-19": {
