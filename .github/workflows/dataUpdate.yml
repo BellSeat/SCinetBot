@@ -1,0 +1,24 @@
+name: Update Data Files
+on:
+  push:
+    branches: [ "main" ]
+    paths: 
+      - '**.json'
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Deploy data files to EC2 using rsync
+      uses: burnett01/rsync-deployments@6.0.0
+      with:
+        switches: -avzr --include='*.json' --exclude='*'
+        path: .
+        remote_path: /home/ec2-user/SCinet/SCinetBot/
+        remote_host: ${{ secrets.EC2_HOST }}
+        remote_user: ec2-user
+        remote_key: ${{ secrets.EC2_SSH_KEY }}
+    
+   
