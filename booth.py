@@ -39,7 +39,8 @@ class Booth:
                 results.append({
                     'boothName': name,
                     'boothNumbers': booth_entry['boothNumbers'],
-                    'matchScore': score
+                    'matchScore': score # it is fuzzy match score, 
+                    # TODO: the best way get similarity rate should use linear or triangular distance for example cosine similarity
                 })
                 best_score = max(best_score, score)
 
