@@ -2,6 +2,8 @@ name: Deploy Bot to EC2
 on:
   push:
     branches: [ "main" ]
+    paths: 
+      - '**.py'
 jobs:
   deploy:
     runs-on: ubuntu-latest
