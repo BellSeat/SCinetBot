@@ -63,5 +63,14 @@
       "11:00-13:00": {"student1": "Jemima Owusu-Tweneboah", "student2": "Daniel Grzenda"},
       "13:00-15:00": {"student1": "Miguel Romero Rosas", "student2": "Smita Darmora"}
     }
+  },
+  "2025-11-21": {
+    "shifts": {
+      "09:00-11:00": {"student1": "Harry Potter", "student2": "Tassadar Aiur"},
+      "11:00-13:00": {"student1": "Dr. House", "student2": "Sherlock Holmes"},
+      "13:00-15:00": {"student1": "Mr. Bean", "student2": "Johnny English"},
+      "15:00-16:00": {"student1": "Frodo Baggins", "student2": "Samwise Gamgee"},
+      "16:00-18:00": {"student1": "Tony Stark", "student2": "Dr. Strange"}
+    }
   }
 }
