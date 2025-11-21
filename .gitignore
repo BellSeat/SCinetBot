@@ -1,1 +1,8 @@
 /__pycache__
+/config.json
+/venv/
+*.pyc
+.DS_Store
+.env
+./.idea/
+.vscode/

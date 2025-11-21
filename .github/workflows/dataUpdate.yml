@@ -14,7 +14,7 @@ jobs:
     - name: Deploy data files to EC2 using rsync
       uses: burnett01/rsync-deployments@6.0.0
       with:
-        switches: -avzr --include='*.json' --exclude='*'
+        switches: -avzr --include='*.json' --exclude='config.json' --exclude='*'
         path: .
         remote_path: /home/ec2-user/SCinet/SCinetBot/
         remote_host: ${{ secrets.EC2_HOST }}
