@@ -113,7 +113,24 @@
       "Fortuna — may fortune walk beside you always, and may every path open just as you arrive."
     ]
   },
-
+  {
+    "boothName":"Miguel Romero",
+    "boothNumbers":[
+      "Solaro — the sun-bright spirit, carrying joy like warm waves and moving through life with holiday in his heartbeat."
+    ]
+  },
+  {
+    "boothName":"Christer",
+    "boothNumbers":[
+      "Lumaris — the quiet mage in white, calm in spirit, sharp in thought, guiding not by age but by clarity."
+    ]
+  },
+  {
+    "boothName": "Laura",
+    "boothNumbers": [
+      "TerraVenture — the explorer who walks the world, brave in every discovery and moving forward wherever the unknown unfolds."
+    ]
+  },
   {
     "boothName": "10Gtek",
     "boothNumbers": [
