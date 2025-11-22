@@ -7,5 +7,10 @@
       "15:00-16:00": {"student1": "Frodo Baggins", "student2": "Samwise Gamgee"},
       "16:00-18:00": {"student1": "Tony Stark", "student2": "Dr. Strange"}
     }
+  },
+  "2025-11-22": {
+    "shifts": {
+      "09:00-23:00": {"student1": "❤️ With Love from Seattle", "student2": "Safe travels home!"}
+    }
   }
 }
